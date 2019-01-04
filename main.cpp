@@ -12,22 +12,18 @@ class Solution {
 public:
 	ListNode* reverseList(ListNode* head)
 	{
-		if (head == nullptr) return head;
-		ListNode * prev;
-		ListNode * curr;
+		if (head == NULL) return NULL;
+		else if (head->next == NULL) return head;
+		ListNode * curr = NULL;
 		ListNode * next;
-		next = head->next;
-		head->next = nullptr;
-		prev = head;
-		curr = next;
-		for (; curr != nullptr; curr = next)
+		while (head) // While head is not a nullptr
 		{
-			//curr = next;
-			next = curr->next;
-			curr->next = prev;
-			prev = curr;
+			next = head->next;  // Need to save the rest
+			head->next = curr; //Making head->next point to current
+			curr = head; // want to remember the previous one to assign it to the next one
+			head = next; //For loop iteration
 		}
-		return prev;
+		return curr;
 	}
 };
 
